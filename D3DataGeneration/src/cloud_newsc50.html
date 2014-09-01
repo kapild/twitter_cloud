@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+
+<script src="../js/d3/d3.js"></script>
+<script src="../js/d3/d3.layout.cloud.js"></script>
+<script>
+  var fill = d3.scale.category20();
+
+  d3.layout.cloud().size([600, 600])
+      .words([
+ ['show',1.0],
+['new',0.584210526316],
+['your',0.515789473684],
+['google',0.452631578947],
+['open',0.326315789474],
+['web',0.305263157895],
+['data',0.3],
+['programming',0.294736842105],
+['ask',0.263157894737],
+['source',0.247368421053],
+['one',0.242105263158],
+['[pdf]',0.231578947368],
+['not',0.221052631579],
+['now',0.221052631579],
+['python',0.215789473684],
+['app',0.210526315789],
+['free',0.210526315789],
+['have',0.205263157895],
+['into',0.189473684211],
+['more',0.189473684211],
+['2014',0.189473684211],
+['system',0.189473684211],
+['using',0.189473684211],
+['game',0.189473684211],
+['time',0.184210526316],
+['internet',0.184210526316],
+['code',0.184210526316],
+['startup',0.184210526316],
+['software',0.178947368421],
+['first',0.178947368421],
+['&amp',0.178947368421],
+['about',0.173684210526],
+['bitcoin',0.168421052632],
+['world',0.163157894737],
+['language',0.163157894737],
+['javascript',0.157894736842],
+['linux',0.157894736842],
+['years',0.152631578947],
+['amazon',0.152631578947],
+['use',0.152631578947],
+['docker',0.147368421053],
+['like',0.147368421053],
+['when',0.147368421053],
+['who',0.147368421053],
+['get',0.142105263158],
+['android',0.136842105263],
+['year',0.131578947368],
+['learning',0.131578947368],
+['building',0.131578947368],
+['project',0.126315789474],
+['library',0.126315789474],
+['machine',0.121052631579],
+['old',0.121052631579],
+['microsoft',0.121052631579],
+['based',0.121052631579],
+['service',0.115789473684],
+['euro',0.115789473684],
+['online',0.115789473684],
+['down',0.115789473684],
+['framework',0.115789473684],
+['people',0.110526315789],
+['network',0.110526315789],
+['facebook',0.110526315789],
+['cloud',0.110526315789],
+['apple',0.110526315789],
+['tech',0.105263157895],
+['best',0.105263157895],
+['life',0.105263157895],
+['000',0.105263157895],
+['search',0.105263157895],
+['part',0.105263157895],
+['simple',0.105263157895],
+['way',0.105263157895],
+['own',0.105263157895],
+['inside',0.1],
+['high',0.1],
+['2013',0.1],
+['email',0.1],
+['day',0.1],
+['business',0.1],
+['don',0.1],
+['fast',0.1],
+['money',0.1],
+['ios',0.1],
+['over',0.1],
+['will',0.1],
+['firefox',0.0947368421053],
+['work',0.0947368421053],
+['just',0.0947368421053],
+['live',0.0947368421053],
+['browser',0.0947368421053],
+['making',0.0947368421053],
+['public',0.0947368421053],
+['build',0.0947368421053],
+['most',0.0947368421053],
+['development',0.0947368421053],
+['rust',0.0947368421053],
+['hacker',0.0947368421053],
+['computer',0.0947368421053],
+['our',0.0947368421053],
+['introducing',0.0894736842105],
+['after',0.0894736842105],
+['haskell',0.0894736842105],
+['make',0.0894736842105],
+['performance',0.0894736842105],
+['digital',0.0894736842105],
+['man',0.0894736842105],
+['platform',0.0894736842105],
+['state',0.0894736842105],
+['swift',0.0894736842105],
+['apps',0.0894736842105],
+['things',0.0842105263158],
+['introduction',0.0842105263158],
+['off',0.0842105263158],
+['mobile',0.0842105263158],
+
+].map(function(d) {
+        return {text: d[0], size: d[1] * 100};
+        
+//        return {text: d[0], size: 10 + Math.random() * 50};
+      }))
+      .padding(5)
+      .rotate(function() { return ~~(Math.random() * 0) * 90; })
+      .font("Impact")
+      .fontSize(function(d) { return d.size; })
+      .on("end", draw)
+      .start();
+
+  function draw(words) {
+    d3.select("body").append("svg")
+        .attr("width", 600)
+        .attr("height", 600)
+      .append("g")
+        .attr("transform", "translate(300,300)")
+      .selectAll("text")
+        .data(words)
+      .enter().append("text")
+        .style("font-size", function(d) { return d.size + "px"; })
+        .style("font-family", "Impact")
+        .style("fill", function(d, i) { return fill(i); })
+        .attr("text-anchor", "middle")
+        .attr("transform", function(d) {
+          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function(d) { return d.text; });
+  }
+</script>
